@@ -1,22 +1,15 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Bank_System;
 
 namespace BankSystemTests
 {
     [TestClass]
-    public class CustomerTests
+    public class TransactionTests
     {
         [TestMethod]
-        public void Customer_WhenX_ReturnsY()
+        public void TestMethod1()
         {
-            //Arrange
-
-
-            //Act
-
-
-            //Assert
-
         }
     }
 }
