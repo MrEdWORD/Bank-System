@@ -23,5 +23,37 @@ namespace Bank_System
             this.Accounts = new List<Account>();
             this.Customers = new List<Customer>();
         }
+
+        internal Customer AddCustomer(string firstName, string lastName, int SSN)
+        {
+            Customer newCustomer = new Customer(firstName, lastName, SSN);
+            Customers.Add(newCustomer);
+            return newCustomer;
+        }
+
+        internal bool RemoveCustomer(Customer customer)
+        {
+            bool customerFound = false;
+
+            while (!customerFound)
+            {
+                foreach (Customer c in Customers)
+                {
+                    if (object.ReferenceEquals(c, customer))
+                    {
+                        Customers.Remove(c);
+                        customerFound = true;
+                        return true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                break;
+            }
+            return false;
+
+        }
     }
 }

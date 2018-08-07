@@ -29,7 +29,7 @@ namespace Bank_System
             return newBranch;
         }
 
-        public bool RemoveBranch(int branchID)
+        public bool RemoveBranch(int branchID) //todo refactor parameter to be of type Branch instead of BranchID
         {
             bool branchIDFound = false;
 
