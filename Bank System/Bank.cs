@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Bank_System
 {
-    public class Bank
+    internal class Bank
     {
-        private int ID { get; set; }
-        private string Name { get; set; }
-        public List<Branch> Branches { get; set; }
+        internal int ID { get; private set; }
+        internal string Name { get; private set; }
+        internal List<Branch> Branches { get; private set; }
 
         private static int globalBankID;
 
@@ -22,7 +22,7 @@ namespace Bank_System
             this.Branches = new List<Branch>();
         }
 
-        public Branch AddBranch(string branchName)
+        internal Branch AddBranch(string branchName)
         {
             Branch newBranch = new Branch(branchName);
             Branches.Add(newBranch);
@@ -50,7 +50,6 @@ namespace Bank_System
                 }
                 break;
             }
-
             return false;
         }
     }

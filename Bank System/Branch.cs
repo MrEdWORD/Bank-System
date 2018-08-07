@@ -9,10 +9,10 @@ namespace Bank_System
 {
     public class Branch
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        private List<Account> Accounts { get; set; }
-        private List<Customer> Customers { get; set; }
+        internal int ID { get; private set; }
+        internal string Name { get; private set; }
+        internal List<Account> Accounts { get; private set; }
+        internal List<Customer> Customers { get; private set; }
 
         private static int globalBranchID;
 
