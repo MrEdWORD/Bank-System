@@ -8,5 +8,8 @@ namespace Bank_System
 {
     interface IAccount
     {
+        decimal Deposit(decimal amount);
+        decimal Withdraw(decimal amount);
+        bool Transfer(decimal amount, int accountID);
     }
 }
