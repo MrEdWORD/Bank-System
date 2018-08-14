@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Bank_System
 {
-    public class Branch
+    internal class Branch
     {
         internal int ID { get; private set; }
         internal string Name { get; private set; }
-        internal List<Account> Accounts { get; private set; }
-        internal List<Customer> Customers { get; private set; }
+        internal static List<Account> Accounts { get; private set; }
+        internal static List<Customer> Customers { get; private set; }
 
         private static int globalBranchID;
 
@@ -20,18 +20,18 @@ namespace Bank_System
         {
             this.ID = Interlocked.Increment(ref globalBranchID);
             this.Name = name;
-            this.Accounts = new List<Account>();
-            this.Customers = new List<Customer>();
+            Accounts = new List<Account>();
+            Customers = new List<Customer>();
         }
 
-        internal Customer AddCustomer(string firstName, string lastName, int SSN)
+        internal static Customer AddCustomer(string firstName, string lastName, int ssn, DateTime joinedDate)
         {
-            Customer newCustomer = new Customer(firstName, lastName, SSN);
+            Customer newCustomer = new Customer(firstName, lastName, ssn, joinedDate);
             Customers.Add(newCustomer);
             return newCustomer;
         }
 
-        internal bool RemoveCustomer(Customer customer)
+        internal static bool RemoveCustomer(Customer customer)
         {
             bool customerFound = false;
 

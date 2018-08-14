@@ -16,16 +16,14 @@ namespace BankSystemTests
             string customerFirstName = "Robin";
             string customerLastName = "Williams";
             int customerSSN = 123456789;
+            DateTime joinedDate = DateTime.Now;
             Customer expectedCustomer = null;
-            Customer actualCustomer = null;
 
             //Act
-            expectedCustomer = branch.AddCustomer(customerFirstName, customerLastName, customerSSN);
-            actualCustomer = branch.Customers[0];
+            expectedCustomer = Branch.AddCustomer(customerFirstName, customerLastName, customerSSN, joinedDate);
 
             //Assert
-            Assert.AreSame(expectedCustomer, actualCustomer);
-            Assert.IsTrue(branch.Customers.Contains(expectedCustomer));
+            Assert.IsTrue(Branch.Customers.Contains(expectedCustomer));
         }
 
         [TestMethod]
@@ -33,14 +31,14 @@ namespace BankSystemTests
         {
             //Arrange
             Branch branch = new Branch("New York City");
-            Customer customer = branch.AddCustomer("Tina", "Fey", 123456789);
+            Customer customer = Branch.AddCustomer("Tina", "Fey", 123456789, DateTime.Now);
 
             //Act
-            bool customerRemoved = branch.RemoveCustomer(customer);
+            bool customerRemoved = Branch.RemoveCustomer(customer);
 
             //Assert
             Assert.IsTrue(customerRemoved);
-            Assert.IsFalse(branch.Customers.Contains(customer));
+            Assert.IsFalse(Branch.Customers.Contains(customer));
         }
     }
 }
