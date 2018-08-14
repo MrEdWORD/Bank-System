@@ -7,29 +7,26 @@ using System.Threading.Tasks;
 
 namespace Bank_System
 {
-    internal class Bank
+    internal static class Bank
     {
-        internal int ID { get; private set; }
-        internal string Name { get; private set; }
-        internal List<Branch> Branches { get; private set; }
+        internal static string Name { get; private set; }
+        internal static List<Branch> Branches { get; private set; }
 
-        private static int globalBankID;
-
-        public Bank(string name)
+        static Bank()
         {
-            this.ID = Interlocked.Increment(ref globalBankID);
-            this.Name = name;
-            this.Branches = new List<Branch>();
+            Name = "Bank Headquarters";
+            Branches = new List<Branch>();
+            //PopulateBranches(); //TODO add method for populating program with default branches
         }
 
-        internal Branch AddBranch(string branchName)
+        internal static Branch AddBranch(string branchName)
         {
             Branch newBranch = new Branch(branchName);
             Branches.Add(newBranch);
             return newBranch;
         }
 
-        public bool RemoveBranch(int branchID) //todo refactor parameter to be of type Branch instead of BranchID
+        internal static bool RemoveBranch(int branchID) //todo refactor parameter to be of type Branch instead of BranchID, or make consistent with AddBranch
         {
             bool branchIDFound = false;
 
