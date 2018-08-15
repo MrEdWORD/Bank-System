@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Bank_System
 {
@@ -10,10 +11,10 @@ namespace Bank_System
     {
         internal string FirstName { get; private set; }
         internal string LastName { get; private set; }
-        internal int SSN { get; private set; }
+        internal string SSN { get; private set; }
         internal DateTime JoinedDate { get; private set; }
 
-        public Customer(string firstName, string lastName, int ssn, DateTime joinedDate)
+        public Customer(string firstName, string lastName, string ssn, DateTime joinedDate)
         {
             this.FirstName = firstName;
             this.LastName = lastName;
@@ -32,6 +33,22 @@ namespace Bank_System
             return false;
         }
 
-        //TODO add method for updating SSN
+        internal bool UpdateSSN(string ssn)
+        {
+            //SSN format must be "###-##-###"
+            Regex regex = new Regex("^\\d{3}-\\d{2}-\\d{4}$");
+            Match match = regex.Match(ssn);
+
+            if (match.Success)
+            {
+                this.SSN = ssn;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }

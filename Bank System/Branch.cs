@@ -24,7 +24,7 @@ namespace Bank_System
             Customers = new List<Customer>();
         }
 
-        internal static Customer AddCustomer(string firstName, string lastName, int ssn, DateTime joinedDate)
+        internal static Customer AddCustomer(string firstName, string lastName, string ssn, DateTime joinedDate)
         {
             Customer newCustomer = new Customer(firstName, lastName, ssn, joinedDate);
             Customers.Add(newCustomer);

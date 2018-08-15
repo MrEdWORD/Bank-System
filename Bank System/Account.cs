@@ -22,32 +22,10 @@ namespace Bank_System
             this.Amount = amount;
         }
 
-        public virtual decimal Deposit(decimal amount)
-        {
-            return Amount += amount;
-        }
+        public abstract decimal Deposit(decimal amount);
 
-        public virtual bool Transfer(decimal amount, int accountID)
-        {
-            throw new NotImplementedException();
+        public abstract bool Transfer(decimal amount, Account account);
 
-            //make sure accountID we want to transfer to exists
-            //bool recipientAccountFound = false;
-            //while (!recipientAccountFound)
-            //{
-
-            //}
-
-            //make sure the account we are transferring from has enough funds in the account
-
-            //Deposit amount in the transfer-to account's amount
-
-            //Decrease transfer-from accounts' amountt by the transfer amount
-        }
-
-        public decimal Withdraw(decimal amount)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract decimal Withdraw(decimal amount);
     }
 }

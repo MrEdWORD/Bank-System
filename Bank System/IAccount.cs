@@ -10,6 +10,6 @@ namespace Bank_System
     {
         decimal Deposit(decimal amount);
         decimal Withdraw(decimal amount);
-        bool Transfer(decimal amount, int accountID);
+        bool Transfer(decimal amount, Account account);
     }
 }

@@ -15,7 +15,7 @@ namespace BankSystemTests
 
             string customerFirstName = "Robin";
             string customerLastName = "Williams";
-            int customerSSN = 123456789;
+            string customerSSN = "123-45-6789";
             DateTime joinedDate = DateTime.Now;
             Customer expectedCustomer = null;
 
@@ -31,7 +31,7 @@ namespace BankSystemTests
         {
             //Arrange
             Branch branch = new Branch("New York City");
-            Customer customer = Branch.AddCustomer("Tina", "Fey", 123456789, DateTime.Now);
+            Customer customer = Branch.AddCustomer("Tina", "Fey", "123-45-6789", DateTime.Now);
 
             //Act
             bool customerRemoved = Branch.RemoveCustomer(customer);

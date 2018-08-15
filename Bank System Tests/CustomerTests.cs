@@ -13,7 +13,7 @@ namespace BankSystemTests
             //Arrange
             string firstName = "Gordan";
             string lastName = "Freeman";
-            int ssn = 123456789;
+            string ssn = "123-45-6789";
             DateTime joinedDate = DateTime.Now;
 
             Customer newCustomer = new Customer(firstName, lastName, ssn, joinedDate);
@@ -34,7 +34,7 @@ namespace BankSystemTests
             //Arrange
             string firstName = "Cloud";
             string lastName = "Strife";
-            int ssn = 123456789;
+            string ssn = "456-12-3057";
             DateTime joinedDate = DateTime.Now;
 
             Customer newCustomer = new Customer(firstName, lastName, ssn, joinedDate);
@@ -55,6 +55,48 @@ namespace BankSystemTests
             Assert.IsFalse(namesAreInvalid_whiteSpace);
             Assert.IsFalse(namesAreInvalid_empty);
             Assert.IsFalse(namesAreInvalid_null);
+        }
+
+        [TestMethod]
+        public void Customer_UpdateSSNValid_ReturnsTrue()
+        {
+            //Arrange
+            string firstName = "Albert";
+            string lastName = "Einstein";
+            string ssn = "495-10-3852";
+            DateTime joinedDate = DateTime.Now;
+
+            Customer newCustomer = new Customer(firstName, lastName, ssn, joinedDate);
+
+            string updatedSSN = "528-44-5183";
+
+            //Act
+            bool ssnIsValid = newCustomer.UpdateSSN(updatedSSN);
+
+            //Assert
+            Assert.IsTrue(ssnIsValid);
+        }
+
+        [TestMethod]
+        public void Customer_UpdateSSNInvalid_ReturnsFalse()
+        {
+            //Arrange
+            string firstName = "Alfred";
+            string lastName = "Wallace";
+            string ssn = "333-33-3333";
+            DateTime joinedDate = DateTime.Now;
+
+            Customer newCustomer = new Customer(firstName, lastName, ssn, joinedDate);
+
+            //Act
+            bool ssnIsInvalid_noDashes = newCustomer.UpdateSSN("123451020");
+            bool ssnIsInvalid_letters = newCustomer.UpdateSSN("lol-jk-gfy");
+            bool ssnIsInvalid_spaces = newCustomer.UpdateSSN("111 11 1111");
+
+            //Assert
+            Assert.IsFalse(ssnIsInvalid_noDashes);
+            Assert.IsFalse(ssnIsInvalid_letters);
+            Assert.IsFalse(ssnIsInvalid_spaces);
         }
     }
 }
