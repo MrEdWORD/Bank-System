@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Bank_System
 {
-    class CheckingAccount
+    internal class CheckingAccount : Account
     {
+        const decimal DailyWithdrawLimit = 1000;
+
+        public CheckingAccount(decimal interestRate, decimal amount)
+        {
+            InterestRate = interestRate;
+            Amount = amount;
+        }
     }
 }
