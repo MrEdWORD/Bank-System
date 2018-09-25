@@ -15,7 +15,7 @@ namespace Bank_System
             Amount = amount;
         }
 
-        public override decimal InterestRate
+        public override decimal InterestRate //Interest rate needs to be the same for all objects of the class and cannot change at run-time, so we have to read it from a const
         {
             get
             {
