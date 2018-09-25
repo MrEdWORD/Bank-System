@@ -11,7 +11,7 @@ namespace BankSystemTests
         public void Account_Deposit_ReturnsAmount()
         {
             //Arrange
-            Account account = new CheckingAccount(1.75m, 500m);
+            Account account = new CheckingAccount(500m);
             decimal depositAmount = 100m;
             decimal expectedAmount = 600m;
 
@@ -26,7 +26,7 @@ namespace BankSystemTests
         public void Account_Withdraw_ReturnsAmount()
         {
             //Arrange
-            Account account = new CheckingAccount(1.75m, 500m);
+            Account account = new CheckingAccount(500m);
             decimal withdrawAmount = 200m;
             decimal expectedAmount = 300m;
 
@@ -42,7 +42,7 @@ namespace BankSystemTests
         public void Account_WithdrawTooMuch_ThrowsException()
         {
             //Arrange
-            Account account = new CheckingAccount(1.75m, 500m);
+            Account account = new CheckingAccount(500m);
             decimal withdrawAmount = 501m;
 
             //Act
@@ -53,8 +53,8 @@ namespace BankSystemTests
         public void Account_Transfer_ReturnsTrue()
         {
             //Arrange
-            Account accountOne = new CheckingAccount(1.75m, 500m);
-            Account accountTwo = new CheckingAccount(1.75m, 500m);
+            Account accountOne = new CheckingAccount(500m);
+            Account accountTwo = new CheckingAccount(500m);
             decimal transferAmount = 200m;
             decimal expectedAmount_accountOne = 300m;
             decimal expectedAmount_accountTwo = 700m;

@@ -10,29 +10,29 @@ namespace Bank_System
     internal abstract class Account : IAccount
     {
         internal int AccountID { get; private set; }
-        protected internal decimal InterestRate { get; set; }
-        protected internal decimal Amount { get; set; }
+        public abstract decimal InterestRate { get; } // Read-only property because the interest rates are declared in the derived class using a constant field. Const field implementation was chosen because we don't want interest rates to change during run-time since all objects of a derived class will have the same interest rate.
+        protected internal decimal Amount { get; set; } 
 
         private static int globalAccountID;
 
         public Account()
         {
-            this.AccountID = Interlocked.Increment(ref globalAccountID);
+            AccountID = Interlocked.Increment(ref globalAccountID);
         }
 
         public virtual decimal Deposit(decimal amount)
         {
-            this.Amount += amount;
+            Amount += amount;
 
-            return this.Amount;
+            return Amount;
         }
 
         public virtual decimal Withdraw(decimal amount)
         {
             if (this.Amount >= amount)
             {
-                this.Amount -= amount;
-                return this.Amount;
+                Amount -= amount;
+                return Amount;
             }
             else
             {
@@ -42,9 +42,9 @@ namespace Bank_System
 
         public virtual bool Transfer(decimal amount, Account account)
         {
-            if (this.Amount >= amount)
+            if (Amount >= amount)
             {
-                this.Amount -= amount;
+                Amount -= amount;
                 account.Amount += amount;
                 return true;
             }

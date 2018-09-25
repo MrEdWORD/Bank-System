@@ -8,12 +8,19 @@ namespace Bank_System
 {
     internal class CheckingAccount : Account
     {
-        const decimal DailyWithdrawLimit = 1000;
+        private const decimal _interestRate = 0.75m;
 
-        public CheckingAccount(decimal interestRate, decimal amount)
+        public CheckingAccount(decimal amount)
         {
-            InterestRate = interestRate;
             Amount = amount;
+        }
+
+        public override decimal InterestRate
+        {
+            get
+            {
+                return _interestRate;
+            }
         }
     }
 }
