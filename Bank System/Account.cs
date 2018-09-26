@@ -11,28 +11,32 @@ namespace Bank_System
     {
         internal int AccountID { get; private set; }
         public abstract decimal InterestRate { get; } // Read-only property because the interest rates are declared in the derived class using a constant field. Const field implementation was chosen because we don't want interest rates to change during run-time since all objects of a derived class will have the same interest rate.
-        protected internal decimal Amount { get; set; } 
+        protected internal decimal Balance { get; set; }
+        protected internal List<Transaction> Transactions = new List<Transaction>(); // Store the history of transactions for reporting or audit purposes
 
-        private static int globalAccountID;
+        private static int _globalAccountID;
 
         public Account()
         {
-            AccountID = Interlocked.Increment(ref globalAccountID);
+            AccountID = Interlocked.Increment(ref _globalAccountID);
         }
 
         public virtual decimal Deposit(decimal amount)
         {
-            Amount += amount;
+            Balance += amount;
+            Transactions.Add(new Transaction(amount, "Deposit", DateTime.Now));
 
-            return Amount;
+            return Balance;
         }
 
         public virtual decimal Withdraw(decimal amount)
         {
-            if (this.Amount >= amount)
+            if (this.Balance >= amount)
             {
-                Amount -= amount;
-                return Amount;
+                Balance -= amount;
+                Transactions.Add(new Transaction(amount, "Withdraw", DateTime.Now));
+
+                return Balance;
             }
             else
             {
@@ -40,12 +44,15 @@ namespace Bank_System
             }
         }
 
-        public virtual bool Transfer(decimal amount, Account account)
+        public virtual bool Transfer(decimal amount, Account recipientAccount)
         {
-            if (Amount >= amount)
+            if (Balance >= amount)
             {
-                Amount -= amount;
-                account.Amount += amount;
+                Balance -= amount;
+                Transactions.Add(new Transaction(amount, "Transfer", DateTime.Now));
+
+                recipientAccount.Deposit(amount);
+
                 return true;
             }
             return false;

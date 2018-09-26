@@ -61,8 +61,8 @@ namespace BankSystemTests
 
             //Act
             bool transferCompleted = accountOne.Transfer(transferAmount, accountTwo);
-            decimal actualAmount_accountOne = accountOne.Amount;
-            decimal actualAmount_accountTwo = accountTwo.Amount;
+            decimal actualAmount_accountOne = accountOne.Balance;
+            decimal actualAmount_accountTwo = accountTwo.Balance;
 
             //Assert
             Assert.IsTrue(transferCompleted);
@@ -82,8 +82,8 @@ namespace BankSystemTests
 
             //Act
             bool transferCompleted = accountOne.Transfer(transferAmount, accountTwo);
-            decimal actualAmount_accountOne = accountOne.Amount;
-            decimal actualAmount_accountTwo = accountTwo.Amount;
+            decimal actualAmount_accountOne = accountOne.Balance;
+            decimal actualAmount_accountTwo = accountTwo.Balance;
 
             //Assert
             Assert.IsFalse(transferCompleted);
