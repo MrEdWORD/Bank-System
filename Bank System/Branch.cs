@@ -14,11 +14,11 @@ namespace Bank_System
         internal static List<Account> Accounts { get; private set; }
         internal static List<Customer> Customers { get; private set; }
 
-        private static int globalBranchID;
+        private static int _globalBranchID;
 
         public Branch (string name)
         {
-            this.ID = Interlocked.Increment(ref globalBranchID);
+            this.ID = Interlocked.Increment(ref _globalBranchID);
             this.Name = name;
             Accounts = new List<Account>();
             Customers = new List<Customer>();
