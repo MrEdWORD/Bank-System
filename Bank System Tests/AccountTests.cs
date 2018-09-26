@@ -39,7 +39,7 @@ namespace BankSystemTests
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void Account_WithdrawTooMuch_ThrowsException()
+        public void Account_Withdraw_TooMuch_ThrowsException()
         {
             //Arrange
             Account account = new CheckingAccount(500m);
@@ -66,6 +66,27 @@ namespace BankSystemTests
 
             //Assert
             Assert.IsTrue(transferCompleted);
+            Assert.AreEqual(expectedAmount_accountOne, actualAmount_accountOne);
+            Assert.AreEqual(expectedAmount_accountTwo, actualAmount_accountTwo);
+        }
+
+        [TestMethod]
+        public void Account_Transfer_NotEnoughFunds_ReturnsFalse()
+        {
+            //Arrange
+            Account accountOne = new CheckingAccount(100m);
+            Account accountTwo = new CheckingAccount(500m);
+            decimal transferAmount = 200m;
+            decimal expectedAmount_accountOne = 100m;
+            decimal expectedAmount_accountTwo = 500m;
+
+            //Act
+            bool transferCompleted = accountOne.Transfer(transferAmount, accountTwo);
+            decimal actualAmount_accountOne = accountOne.Amount;
+            decimal actualAmount_accountTwo = accountTwo.Amount;
+
+            //Assert
+            Assert.IsFalse(transferCompleted);
             Assert.AreEqual(expectedAmount_accountOne, actualAmount_accountOne);
             Assert.AreEqual(expectedAmount_accountTwo, actualAmount_accountTwo);
         }
