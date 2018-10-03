@@ -93,7 +93,7 @@ namespace BankSystemTests
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void Account_Savings_HasReachedMaxTransactions_ThrowsException()
+        public void Account_Savings_Withdraw_HasReachedMaxTransactions_ThrowsException()
         {
             //Arrange
             SavingsAccount accountOne = new SavingsAccount(700m);
@@ -112,7 +112,7 @@ namespace BankSystemTests
         }
 
         [TestMethod]
-        public void Account_Savings_HasReachedNotMaxTransactions_ReturnsAmount()
+        public void Account_Savings_Withdraw_ReturnsAmount()
         {
             //Arrange
             SavingsAccount accountOne = new SavingsAccount(700m);
