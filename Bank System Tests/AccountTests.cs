@@ -90,5 +90,43 @@ namespace BankSystemTests
             Assert.AreEqual(expectedAmount_accountOne, actualAmount_accountOne);
             Assert.AreEqual(expectedAmount_accountTwo, actualAmount_accountTwo);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Account_Savings_HasReachedMaxTransactions_ThrowsException()
+        {
+            //Arrange
+            SavingsAccount accountOne = new SavingsAccount(700m);
+
+            //Act
+            for (int i = 0; i <=5; i++)
+            {
+                //Generate 6 withdraw transactions in the current month
+                accountOne.Withdraw(100m);
+            }
+
+            //Generate one more transaction to trigger the max transaction check
+            accountOne.Withdraw(100m);
+
+            //Assert - no assertion, expected to throw exception
+        }
+
+        [TestMethod]
+        public void Account_Savings_HasReachedNotMaxTransactions_ReturnsAmount()
+        {
+            //Arrange
+            SavingsAccount accountOne = new SavingsAccount(700m);
+            decimal expectedBalance = 100m;
+
+            //Act
+            for (int i = 0; i <= 5; i++)
+            {
+                //Generate 6 withdraw transactions in the current month
+                accountOne.Withdraw(100m);
+            }
+
+            //Assert
+            Assert.AreEqual(expectedBalance, accountOne.Balance);
+        }
     }
 }
